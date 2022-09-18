@@ -7,7 +7,7 @@ import { styles } from './styles';
 export interface GameCardData {
   id: string
   bannerUrl: string
-  name: string
+  title: string
   _count: {
     ads: number
   }
@@ -26,7 +26,7 @@ export function GameCard({ data, ...rest }: GameCardProps) {
         style={styles.footer}
       >
         <Text style={styles.name}>
-          {data.name}
+          {data.title}
         </Text>
         
         <Text style={styles.ads}>

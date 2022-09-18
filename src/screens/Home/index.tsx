@@ -14,40 +14,40 @@ export function Home() {
   const [games, setGames] = useState<GameCardData[]>([])
   const navigation = useNavigation()
 
-  function handleOpenGame() {
-    navigation.navigate("game")
+  function handleOpenGame({id, title, bannerUrl, _count}: GameCardData) {
+    navigation.navigate('game', {id, title, bannerUrl, _count})
   }
 
   useEffect(() => {
-    fetch('http://192.168.200.104:3333/games')
+    fetch('https://cc9b-45-183-208-163.sa.ngrok.io/games')
     .then(response => response.json())
     .then(data => setGames(data))
   }, [])
 
   return (
     <Background>
-    <SafeAreaView style={styles.container}>
-      <Image 
-        source={logoImg}
-        style={styles.logo}
-      />
+      <SafeAreaView style={styles.container}>
+        <Image 
+          source={logoImg}
+          style={styles.logo}
+        />
 
-      <Heading 
-        title='Encontre seu duo!' 
-        subtitle='Selecione o game que deseja jogar...' 
-      />
+        <Heading 
+          title='Encontre seu duo!' 
+          subtitle='Selecione o game que deseja jogar...' 
+        />
 
-      <FlatList 
-        data={games}
-        keyExtractor={item => item.id}
-        renderItem={({item}) => (
-          <GameCard data={item} onPress={handleOpenGame} />
-        )}
-        contentContainerStyle={styles.contentList}
-        showsHorizontalScrollIndicator={false}
-        horizontal
-      />
-    </SafeAreaView>
+        <FlatList 
+          data={games}
+          keyExtractor={item => item.id}
+          renderItem={({item}) => (
+            <GameCard data={item} onPress={() => handleOpenGame(item)} />
+          )}
+          contentContainerStyle={styles.contentList}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+        />
+      </SafeAreaView>
     </Background>
   );
 }
