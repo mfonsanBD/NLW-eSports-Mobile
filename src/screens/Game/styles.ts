@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   cover: {
     width: '100%',
-    height: 380,
+    height: 350,
     position: 'relative'
   },
   overlay: {
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     position: 'absolute',
-    top: 320,
+    top: 290,
     paddingHorizontal: 16
   },
   titleArea: {

@@ -28,7 +28,7 @@ export function Game() {
   }
 
   useEffect(() => {
-    fetch(`https://cc9b-45-183-208-163.sa.ngrok.io/games/${game.id}/ads`)
+    fetch(`https://77fd-201-76-186-90.ngrok.io/games/${game.id}/ads`)
     .then(response => response.json())
     .then(data => setAdsByGame(data))
   }, [game._count.ads !== 0])
