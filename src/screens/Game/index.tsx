@@ -14,9 +14,11 @@ import { AdCard, AdCardData } from '../../components/AdCard';
 
 import { styles } from './styles';
 import { THEME } from '../../theme';
+import { DuoMatch } from '../../components/DuoMatch';
 
 export function Game() {
   const [adsByGame, setAdsByGame] = useState<AdCardData[]>([]);
+  const [modalIsOpen, setModalIsOpen] = useState(true)
 
   const route = useRoute();
   const game = route.params as GameParams;
@@ -73,7 +75,7 @@ export function Game() {
               data={adsByGame}
               keyExtractor={item => item.id}
               renderItem={({item}) => (
-                <AdCard data={item} onConnect={() => {}} />
+                <AdCard data={item} onConnect={() => setModalIsOpen(!modalIsOpen)} />
               )}
               contentContainerStyle={styles.contentList}
               showsHorizontalScrollIndicator={false}
@@ -88,6 +90,7 @@ export function Game() {
           />
         )
       }
+      <DuoMatch visible={modalIsOpen} discord="Mike#2323" />
       </SafeAreaView>
     </Background>
   );
