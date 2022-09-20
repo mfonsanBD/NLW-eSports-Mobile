@@ -15,7 +15,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 32,
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+    position: 'relative'
+  },
+  closeBtn: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    padding: 16
   },
   text: {
     color: THEME.COLORS.TEXT,

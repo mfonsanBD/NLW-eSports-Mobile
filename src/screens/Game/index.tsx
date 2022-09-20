@@ -18,7 +18,7 @@ import { DuoMatch } from '../../components/DuoMatch';
 
 export function Game() {
   const [adsByGame, setAdsByGame] = useState<AdCardData[]>([]);
-  const [modalIsOpen, setModalIsOpen] = useState(true)
+  const [duoSelected, setDuoSelected] = useState('')
 
   const route = useRoute();
   const game = route.params as GameParams;
@@ -34,6 +34,12 @@ export function Game() {
     .then(response => response.json())
     .then(data => setAdsByGame(data))
   }, [game._count.ads !== 0])
+
+  async function handleGetAdDiscord(adId: string){
+    await fetch(`https://77fd-201-76-186-90.ngrok.io/ads/${adId}/discord`)
+    .then(response => response.json())
+    .then(data => setDuoSelected(data.discord))
+  } 
 
   return (
     <Background>
@@ -75,7 +81,9 @@ export function Game() {
               data={adsByGame}
               keyExtractor={item => item.id}
               renderItem={({item}) => (
-                <AdCard data={item} onConnect={() => setModalIsOpen(!modalIsOpen)} />
+                <AdCard 
+                  data={item} 
+                  onConnect={() => handleGetAdDiscord(item.id)} />
               )}
               contentContainerStyle={styles.contentList}
               showsHorizontalScrollIndicator={false}
@@ -90,7 +98,11 @@ export function Game() {
           />
         )
       }
-      <DuoMatch visible={modalIsOpen} discord="Mike#2323" />
+      <DuoMatch 
+        visible={duoSelected.length > 0} 
+        discord={duoSelected}
+        closeModal={() => setDuoSelected('')}
+      />
       </SafeAreaView>
     </Background>
   );
