@@ -19,7 +19,7 @@ export function Home() {
   }
 
   useEffect(() => {
-    fetch('https://77fd-201-76-186-90.ngrok.io/games')
+    fetch('https://esports-server-api.herokuapp.com/games')
     .then(response => response.json())
     .then(data => setGames(data))
   }, [])

@@ -30,13 +30,13 @@ export function Game() {
   }
 
   useEffect(() => {
-    fetch(`https://77fd-201-76-186-90.ngrok.io/games/${game.id}/ads`)
+    fetch(`https://esports-server-api.herokuapp.com/games/${game.id}/ads`)
     .then(response => response.json())
     .then(data => setAdsByGame(data))
   }, [game._count.ads !== 0])
 
   async function handleGetAdDiscord(adId: string){
-    await fetch(`https://77fd-201-76-186-90.ngrok.io/ads/${adId}/discord`)
+    await fetch(`https://esports-server-api.herokuapp.com/ads/${adId}/discord`)
     .then(response => response.json())
     .then(data => setDuoSelected(data.discord))
   } 
